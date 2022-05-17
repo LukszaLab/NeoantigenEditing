@@ -39,3 +39,9 @@ python predictions_clones.py
 ```
 python predictions_aggregated_loglikelihood_scores.py
 ```
+
+For any questions please contact:
+
+- [Zachary Sethna](mailto:sethnaz@mskcc.org)
+
+- [Marta Luksza](mailto:marta.luksza@mssm.edu)
