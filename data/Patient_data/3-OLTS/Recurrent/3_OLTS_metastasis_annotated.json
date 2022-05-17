@@ -1,0 +1,1479 @@
+{
+ "id": "3_OLTS_metastasis",
+ "sample_trees": [
+  {
+   "topology": {
+    "clone_id": 0,
+    "children": [
+     {
+      "clone_id": 1,
+      "children": [
+       {
+        "clone_id": 2,
+        "children": [
+         {
+          "clone_id": 3,
+          "children": [
+           {
+            "clone_id": 4,
+            "X": 0.1994874606249693,
+            "x": 0.1994874606249693,
+            "tilde_x": 0.19948746062496933,
+            "new_x": 0.0,
+            "TMB": 6,
+            "neoantigen_load": 13,
+            "NA_Mut": 5,
+            "F_I": -4.299729363222034,
+            "F_P": 0
+           },
+           {
+            "clone_id": 5,
+            "X": 0.13969554319251698,
+            "x": 0.13969554319251698,
+            "tilde_x": 0.139695543192517,
+            "new_x": 0.0,
+            "TMB": 4,
+            "neoantigen_load": 6,
+            "NA_Mut": 3,
+            "F_I": -1.1224707192052954,
+            "F_P": 0
+           }
+          ],
+          "X": 0.5728694888737663,
+          "x": 0.23368648505628004,
+          "tilde_x": 0.23368648505628006,
+          "new_x": 0.0,
+          "TMB": 2,
+          "neoantigen_load": 5,
+          "NA_Mut": 2,
+          "F_I": -0.0,
+          "F_P": 0
+         },
+         {
+          "clone_id": 6,
+          "X": 0.09812643506514983,
+          "x": 0.09812643506514983,
+          "tilde_x": 0.09812643506514984,
+          "new_x": 0.0,
+          "TMB": 4,
+          "neoantigen_load": 4,
+          "NA_Mut": 2,
+          "F_I": -1.7702080030023082,
+          "F_P": 1
+         }
+        ],
+        "X": 0.7015916382117446,
+        "x": 0.030595714272828478,
+        "tilde_x": 0.03059571427282848,
+        "new_x": 0.0,
+        "TMB": 1,
+        "neoantigen_load": 2,
+        "NA_Mut": 1,
+        "F_I": 0.0,
+        "F_P": 0
+       },
+       {
+        "clone_id": 7,
+        "children": [
+         {
+          "clone_id": 8,
+          "children": [
+           {
+            "clone_id": 9,
+            "X": 0.16500179899917516,
+            "x": 0.16500179899917516,
+            "tilde_x": 0.1650017989991752,
+            "new_x": 0.0,
+            "TMB": 1,
+            "neoantigen_load": 0,
+            "NA_Mut": 0,
+            "F_I": 0,
+            "F_P": 0
+           },
+           {
+            "clone_id": 10,
+            "X": 0.03494117423031399,
+            "x": 0.03494117423031399,
+            "tilde_x": 0.034941174230313995,
+            "new_x": 0.0,
+            "TMB": 1,
+            "neoantigen_load": 0,
+            "NA_Mut": 0,
+            "F_I": 0,
+            "F_P": 0
+           }
+          ],
+          "X": 0.22415329276982732,
+          "x": 0.02421031954033817,
+          "tilde_x": 0.024210319540338174,
+          "new_x": 0.0,
+          "TMB": 1,
+          "neoantigen_load": 0,
+          "NA_Mut": 0,
+          "F_I": 0,
+          "F_P": 0
+         }
+        ],
+        "X": 0.2505990817587497,
+        "x": 0.02644578898892236,
+        "tilde_x": 0.026445788988922362,
+        "new_x": 0.0,
+        "TMB": 0,
+        "neoantigen_load": 0,
+        "NA_Mut": 0,
+        "F_I": 0,
+        "F_P": 0
+       }
+      ],
+      "X": 1.0,
+      "x": 0.047809280029505685,
+      "tilde_x": 0.04780928002950569,
+      "new_x": 0.0,
+      "TMB": 0,
+      "neoantigen_load": 0,
+      "NA_Mut": 0,
+      "F_I": 0,
+      "F_P": 0
+     }
+    ],
+    "X": 1.0,
+    "x": 0.0,
+    "tilde_x": 0.0,
+    "new_x": 0.0,
+    "TMB": 0,
+    "neoantigen_load": 0,
+    "NA_Mut": 0,
+    "F_I": 0,
+    "F_P": 0
+   },
+   "score": -875.6222321715436
+  },
+  {
+   "topology": {
+    "clone_id": 0,
+    "children": [
+     {
+      "clone_id": 1,
+      "children": [
+       {
+        "clone_id": 2,
+        "children": [
+         {
+          "clone_id": 3,
+          "X": 0.20537620070721543,
+          "x": 0.20537620070721543,
+          "tilde_x": 0.0,
+          "new_x": 1.0,
+          "TMB": 5,
+          "neoantigen_load": 11,
+          "NA_Mut": 4,
+          "F_I": -4.299729363222034,
+          "F_P": 0
+         },
+         {
+          "clone_id": 4,
+          "X": 0.09808989676499574,
+          "x": 0.09808989676499574,
+          "tilde_x": 0.12344193170692319,
+          "new_x": 0.0,
+          "TMB": 3,
+          "neoantigen_load": 3,
+          "NA_Mut": 1,
+          "F_I": -0.0,
+          "F_P": 1
+         }
+        ],
+        "X": 0.66815214656022,
+        "x": 0.36468604908800883,
+        "tilde_x": 0.4589417651630615,
+        "new_x": 0.0,
+        "TMB": 1,
+        "neoantigen_load": 3,
+        "NA_Mut": 1,
+        "F_I": -0.0,
+        "F_P": 0
+       },
+       {
+        "clone_id": 5,
+        "children": [
+         {
+          "clone_id": 6,
+          "X": 0.16759922721626416,
+          "x": 0.16759922721626416,
+          "tilde_x": 0.2109164454493152,
+          "new_x": 0.0,
+          "TMB": 5,
+          "neoantigen_load": 5,
+          "NA_Mut": 3,
+          "F_I": -1.1224707192052954,
+          "F_P": 0
+         },
+         {
+          "clone_id": 7,
+          "X": 0.040045196018178665,
+          "x": 0.040045196018178665,
+          "tilde_x": 0.050395163162516535,
+          "new_x": 0.0,
+          "TMB": 2,
+          "neoantigen_load": 2,
+          "NA_Mut": 1,
+          "F_I": 0.0,
+          "F_P": 0
+         }
+        ],
+        "X": 0.27215161319106146,
+        "x": 0.06450718995661864,
+        "tilde_x": 0.08117953428280157,
+        "new_x": 0.0,
+        "TMB": 2,
+        "neoantigen_load": 2,
+        "NA_Mut": 1,
+        "F_I": 0.0,
+        "F_P": 0
+       }
+      ],
+      "X": 1.0,
+      "x": 0.059696240248718446,
+      "tilde_x": 0.07512516023538199,
+      "new_x": 0.0,
+      "TMB": 0,
+      "neoantigen_load": 0,
+      "NA_Mut": 0,
+      "F_I": 0,
+      "F_P": 0
+     }
+    ],
+    "X": 1.0,
+    "x": 0.0,
+    "tilde_x": 0.0,
+    "new_x": 0.0,
+    "TMB": 0,
+    "neoantigen_load": 0,
+    "NA_Mut": 0,
+    "F_I": 0,
+    "F_P": 0
+   },
+   "score": -877.0254138954729
+  },
+  {
+   "topology": {
+    "clone_id": 0,
+    "children": [
+     {
+      "clone_id": 1,
+      "children": [
+       {
+        "clone_id": 2,
+        "children": [
+         {
+          "clone_id": 3,
+          "X": 0.1882035385971287,
+          "x": 0.1882035385971287,
+          "tilde_x": 0.0,
+          "new_x": 1.0,
+          "TMB": 5,
+          "neoantigen_load": 11,
+          "NA_Mut": 4,
+          "F_I": -4.299729363222034,
+          "F_P": 0
+         },
+         {
+          "clone_id": 4,
+          "X": 0.09813122481715776,
+          "x": 0.09813122481715776,
+          "tilde_x": 0.12088156266113366,
+          "new_x": 0.0,
+          "TMB": 4,
+          "neoantigen_load": 3,
+          "NA_Mut": 1,
+          "F_I": -0.0,
+          "F_P": 1
+         }
+        ],
+        "X": 0.6958294101468159,
+        "x": 0.4094946467325294,
+        "tilde_x": 0.5044301942692369,
+        "new_x": 0.0,
+        "TMB": 1,
+        "neoantigen_load": 3,
+        "NA_Mut": 1,
+        "F_I": -0.0,
+        "F_P": 0
+       },
+       {
+        "clone_id": 5,
+        "children": [
+         {
+          "clone_id": 6,
+          "X": 0.16881111889614078,
+          "x": 0.16881111889614078,
+          "tilde_x": 0.20794759144973,
+          "new_x": 0.0,
+          "TMB": 4,
+          "neoantigen_load": 5,
+          "NA_Mut": 3,
+          "F_I": -1.1224707192052954,
+          "F_P": 0
+         },
+         {
+          "clone_id": 7,
+          "X": 0.03287225435498799,
+          "x": 0.03287225435498799,
+          "tilde_x": 0.040493222030287254,
+          "new_x": 0.0,
+          "TMB": 2,
+          "neoantigen_load": 2,
+          "NA_Mut": 1,
+          "F_I": 0.0,
+          "F_P": 0
+         }
+        ],
+        "X": 0.2612621384561951,
+        "x": 0.05957876520506633,
+        "tilde_x": 0.07339126004824884,
+        "new_x": 0.0,
+        "TMB": 2,
+        "neoantigen_load": 2,
+        "NA_Mut": 1,
+        "F_I": 0.0,
+        "F_P": 0
+       }
+      ],
+      "X": 1.0,
+      "x": 0.04290845139698907,
+      "tilde_x": 0.05285616954136344,
+      "new_x": 0.0,
+      "TMB": 0,
+      "neoantigen_load": 0,
+      "NA_Mut": 0,
+      "F_I": 0,
+      "F_P": 0
+     }
+    ],
+    "X": 1.0,
+    "x": 0.0,
+    "tilde_x": 0.0,
+    "new_x": 0.0,
+    "TMB": 0,
+    "neoantigen_load": 0,
+    "NA_Mut": 0,
+    "F_I": 0,
+    "F_P": 0
+   },
+   "score": -877.2426686313714
+  },
+  {
+   "topology": {
+    "clone_id": 0,
+    "children": [
+     {
+      "clone_id": 1,
+      "children": [
+       {
+        "clone_id": 2,
+        "children": [
+         {
+          "clone_id": 3,
+          "children": [
+           {
+            "clone_id": 4,
+            "X": 0.1662871689672148,
+            "x": 0.1662871689672148,
+            "tilde_x": 0.19392353437772586,
+            "new_x": 0.0,
+            "TMB": 1,
+            "neoantigen_load": 2,
+            "NA_Mut": 1,
+            "F_I": 0.0,
+            "F_P": 0
+           },
+           {
+            "clone_id": 5,
+            "X": 0.017967035335898076,
+            "x": 0.017967035335898076,
+            "tilde_x": 0.020953095877853312,
+            "new_x": 0.0,
+            "TMB": 1,
+            "neoantigen_load": 2,
+            "NA_Mut": 1,
+            "F_I": 0.0,
+            "F_P": 0
+           }
+          ],
+          "X": 0.24064365216153266,
+          "x": 0.05638944785841979,
+          "tilde_x": 0.06576118348896326,
+          "new_x": 0.0,
+          "TMB": 1,
+          "neoantigen_load": 2,
+          "NA_Mut": 1,
+          "F_I": 0.0,
+          "F_P": 0
+         },
+         {
+          "clone_id": 6,
+          "X": 0.04887990527095735,
+          "x": 0.04887990527095735,
+          "tilde_x": 0.05700358030667631,
+          "new_x": 0.0,
+          "TMB": 1,
+          "neoantigen_load": 2,
+          "NA_Mut": 1,
+          "F_I": 0.0,
+          "F_P": 0
+         }
+        ],
+        "X": 0.3040944643467676,
+        "x": 0.014570906914277593,
+        "tilde_x": 0.016992542391906725,
+        "new_x": 0.0,
+        "TMB": 1,
+        "neoantigen_load": 2,
+        "NA_Mut": 1,
+        "F_I": 0.0,
+        "F_P": 0
+       },
+       {
+        "clone_id": 7,
+        "children": [
+         {
+          "clone_id": 8,
+          "children": [
+           {
+            "clone_id": 9,
+            "X": 0.14251166316245412,
+            "x": 0.14251166316245412,
+            "tilde_x": 0.0,
+            "new_x": 1.0,
+            "TMB": 7,
+            "neoantigen_load": 13,
+            "NA_Mut": 5,
+            "F_I": -4.299729363222034,
+            "F_P": 0
+           }
+          ],
+          "X": 0.25458430213030053,
+          "x": 0.11207263896784642,
+          "tilde_x": 0.1306987327444886,
+          "new_x": 0.0,
+          "TMB": 3,
+          "neoantigen_load": 5,
+          "NA_Mut": 2,
+          "F_I": -0.0,
+          "F_P": 0
+         },
+         {
+          "clone_id": 10,
+          "X": 0.09817440049891163,
+          "x": 0.09817440049891163,
+          "tilde_x": 0.1144906540198355,
+          "new_x": 0.0,
+          "TMB": 4,
+          "neoantigen_load": 1,
+          "NA_Mut": 1,
+          "F_I": -1.1224707192052954,
+          "F_P": 1
+         }
+        ],
+        "X": 0.6151742932168671,
+        "x": 0.26241559058765496,
+        "tilde_x": 0.3060281747451575,
+        "new_x": 0.0,
+        "TMB": 0,
+        "neoantigen_load": 0,
+        "NA_Mut": 0,
+        "F_I": 0,
+        "F_P": 0
+       }
+      ],
+      "X": 1.0,
+      "x": 0.08073124243636531,
+      "tilde_x": 0.094148502047393,
+      "new_x": 0.0,
+      "TMB": 0,
+      "neoantigen_load": 0,
+      "NA_Mut": 0,
+      "F_I": 0,
+      "F_P": 0
+     }
+    ],
+    "X": 1.0,
+    "x": 0.0,
+    "tilde_x": 0.0,
+    "new_x": 0.0,
+    "TMB": 0,
+    "neoantigen_load": 0,
+    "NA_Mut": 0,
+    "F_I": 0,
+    "F_P": 0
+   },
+   "score": -879.172024566746
+  },
+  {
+   "topology": {
+    "clone_id": 0,
+    "children": [
+     {
+      "clone_id": 1,
+      "children": [
+       {
+        "clone_id": 2,
+        "children": [
+         {
+          "clone_id": 3,
+          "X": 0.1922540622636323,
+          "x": 0.1922540622636323,
+          "tilde_x": 0.0,
+          "new_x": 1.0,
+          "TMB": 5,
+          "neoantigen_load": 11,
+          "NA_Mut": 4,
+          "F_I": -4.299729363222034,
+          "F_P": 0
+         },
+         {
+          "clone_id": 4,
+          "X": 0.09590122163838781,
+          "x": 0.09590122163838781,
+          "tilde_x": 0.11872696247429236,
+          "new_x": 0.0,
+          "TMB": 3,
+          "neoantigen_load": 3,
+          "NA_Mut": 1,
+          "F_I": -0.0,
+          "F_P": 1
+         }
+        ],
+        "X": 0.6625116114832804,
+        "x": 0.3743563275812603,
+        "tilde_x": 0.46345801333320086,
+        "new_x": 0.0,
+        "TMB": 1,
+        "neoantigen_load": 3,
+        "NA_Mut": 1,
+        "F_I": -0.0,
+        "F_P": 0
+       },
+       {
+        "clone_id": 5,
+        "children": [
+         {
+          "clone_id": 6,
+          "X": 0.16670177698328145,
+          "x": 0.16670177698328145,
+          "tilde_x": 0.20637897288650883,
+          "new_x": 0.0,
+          "TMB": 5,
+          "neoantigen_load": 5,
+          "NA_Mut": 3,
+          "F_I": -1.1224707192052954,
+          "F_P": 0
+         },
+         {
+          "clone_id": 7,
+          "X": 0.03190454407749148,
+          "x": 0.03190454407749148,
+          "tilde_x": 0.0394982414481724,
+          "new_x": 0.0,
+          "TMB": 2,
+          "neoantigen_load": 2,
+          "NA_Mut": 1,
+          "F_I": 0.0,
+          "F_P": 0
+         }
+        ],
+        "X": 0.2741263048498382,
+        "x": 0.07551998378906527,
+        "tilde_x": 0.09349472434451724,
+        "new_x": 0.0,
+        "TMB": 2,
+        "neoantigen_load": 2,
+        "NA_Mut": 1,
+        "F_I": 0.0,
+        "F_P": 0
+       }
+      ],
+      "X": 1.0,
+      "x": 0.06336208366688134,
+      "tilde_x": 0.07844308551330836,
+      "new_x": 0.0,
+      "TMB": 0,
+      "neoantigen_load": 0,
+      "NA_Mut": 0,
+      "F_I": 0,
+      "F_P": 0
+     }
+    ],
+    "X": 1.0,
+    "x": 0.0,
+    "tilde_x": 0.0,
+    "new_x": 0.0,
+    "TMB": 0,
+    "neoantigen_load": 0,
+    "NA_Mut": 0,
+    "F_I": 0,
+    "F_P": 0
+   },
+   "score": -879.5784822597909
+  }
+ ],
+ "patient": "3-OLTS",
+ "cohort": "LTS",
+ "OS": 115,
+ "PFS": 80,
+ "status": 0,
+ "HLA_genes": [
+  "A*02:01",
+  "A*02:01",
+  "B*35:01",
+  "B*15:01",
+  "C*03:04",
+  "C*04:01"
+ ],
+ "mutations": [
+  {
+   "id": "1_12333129_A_G",
+   "gene": "VPS13D",
+   "missense": 1
+  },
+  {
+   "id": "1_118584363_G_A",
+   "gene": "SPAG17",
+   "missense": 0
+  },
+  {
+   "id": "1_144892041_T_C",
+   "gene": "PDE4DIP",
+   "missense": 0
+  },
+  {
+   "id": "1_146502194_G_T",
+   "gene": "NBPF13P",
+   "missense": 0
+  },
+  {
+   "id": "1_203013378_T_C",
+   "gene": "PPFIA4",
+   "missense": 0
+  },
+  {
+   "id": "1_248224489_A_G",
+   "gene": "OR2L3",
+   "missense": 1
+  },
+  {
+   "id": "2_20240631_G_T",
+   "gene": "LAPTM4A",
+   "missense": 0
+  },
+  {
+   "id": "2_20240637_C_T",
+   "gene": "LAPTM4A",
+   "missense": 0
+  },
+  {
+   "id": "2_111881275_G_T",
+   "gene": "BCL2L11",
+   "missense": 0
+  },
+  {
+   "id": "2_113286207_G_T",
+   "gene": "TTL",
+   "missense": 0
+  },
+  {
+   "id": "2_174128446_G_T",
+   "gene": "MLTK",
+   "missense": 0
+  },
+  {
+   "id": "2_187559047_G_A",
+   "gene": "FAM171B",
+   "missense": 0
+  },
+  {
+   "id": "2_216232774_C_A",
+   "gene": "FN1",
+   "missense": 0
+  },
+  {
+   "id": "3_195456742_G_A",
+   "gene": "LINC00969",
+   "missense": 0
+  },
+  {
+   "id": "3_196529926_C_A",
+   "gene": "PAK2",
+   "missense": 0
+  },
+  {
+   "id": "3_196529978_C_T",
+   "gene": "PAK2",
+   "missense": 0
+  },
+  {
+   "id": "3_196530022_C_T",
+   "gene": "PAK2",
+   "missense": 0
+  },
+  {
+   "id": "4_1809127_C_T",
+   "gene": "FGFR3",
+   "missense": 0
+  },
+  {
+   "id": "4_69107347_C_T",
+   "gene": "TMPRSS11B",
+   "missense": 0
+  },
+  {
+   "id": "5_6616791_A_C",
+   "gene": "NSUN2",
+   "missense": 0
+  },
+  {
+   "id": "5_49405807_A_C",
+   "gene": "CTD-2013M15.1-EMB",
+   "missense": 0
+  },
+  {
+   "id": "5_49440144_A_C",
+   "gene": "CTD-2013M15.1-EMB",
+   "missense": 0
+  },
+  {
+   "id": "5_49440145_T_G",
+   "gene": "CTD-2013M15.1-EMB",
+   "missense": 0
+  },
+  {
+   "id": "5_49440809_G_C",
+   "gene": "CTD-2013M15.1-EMB",
+   "missense": 0
+  },
+  {
+   "id": "5_49440847_T_C",
+   "gene": "CTD-2013M15.1-EMB",
+   "missense": 0
+  },
+  {
+   "id": "6_10756712_C_T",
+   "gene": "TMEM14B",
+   "missense": 1
+  },
+  {
+   "id": "6_29797406_G_A",
+   "gene": "HLA-G",
+   "missense": 0
+  },
+  {
+   "id": "6_29797436_T_C",
+   "gene": "HLA-G",
+   "missense": 0
+  },
+  {
+   "id": "6_29977358_T_C",
+   "gene": "HCG4P3",
+   "missense": 0
+  },
+  {
+   "id": "6_29977359_G_A",
+   "gene": "HCG4P3",
+   "missense": 0
+  },
+  {
+   "id": "6_33048530_G_A",
+   "gene": "HLA-DPB1",
+   "missense": 1
+  },
+  {
+   "id": "6_53160513_G_A",
+   "gene": "ELOVL5",
+   "missense": 0
+  },
+  {
+   "id": "6_58778747_T_C",
+   "gene": "RP11-143A22.1-RP1-91N13.1",
+   "missense": 0
+  },
+  {
+   "id": "6_58779012_G_C",
+   "gene": "RP11-143A22.1-RP1-91N13.1",
+   "missense": 0
+  },
+  {
+   "id": "6_71212326_C_T",
+   "gene": "FAM135A",
+   "missense": 0
+  },
+  {
+   "id": "6_71212331_C_T",
+   "gene": "FAM135A",
+   "missense": 0
+  },
+  {
+   "id": "6_117037368_C_T",
+   "gene": "KPNA5",
+   "missense": 0
+  },
+  {
+   "id": "6_136594277_G_A",
+   "gene": "BCLAF1",
+   "missense": 1
+  },
+  {
+   "id": "7_822080_T_C",
+   "gene": "HEATR2",
+   "missense": 0
+  },
+  {
+   "id": "7_45123925_C_T",
+   "gene": "NACAD",
+   "missense": 0
+  },
+  {
+   "id": "7_50737559_G_A",
+   "gene": "GRB10",
+   "missense": 1
+  },
+  {
+   "id": "7_94285923_A_T",
+   "gene": "SGCE",
+   "missense": 0
+  },
+  {
+   "id": "7_97515344_C_G",
+   "gene": "AC007875.3",
+   "missense": 0
+  },
+  {
+   "id": "8_30948320_A_T",
+   "gene": "WRN",
+   "missense": 0
+  },
+  {
+   "id": "8_46840727_T_G",
+   "gene": "RP11-643N23.1-AC113134.1",
+   "missense": 0
+  },
+  {
+   "id": "8_85833124_C_T",
+   "gene": "RALYL",
+   "missense": 0
+  },
+  {
+   "id": "9_21187003_C_A",
+   "gene": "IFNA4",
+   "missense": 0
+  },
+  {
+   "id": "9_68415193_T_A",
+   "gene": "LINC00537",
+   "missense": 0
+  },
+  {
+   "id": "9_80537112_T_A",
+   "gene": "GNAQ",
+   "missense": 1
+  },
+  {
+   "id": "9_80856603_C_T",
+   "gene": "CEP78",
+   "missense": 0
+  },
+  {
+   "id": "10_28879641_A_T",
+   "gene": "WAC",
+   "missense": 0
+  },
+  {
+   "id": "10_45622786_C_A",
+   "gene": "CEP164P1",
+   "missense": 0
+  },
+  {
+   "id": "10_55782971_C_A",
+   "gene": "PCDH15",
+   "missense": 0
+  },
+  {
+   "id": "11_64417938_G_A",
+   "gene": "NRXN2",
+   "missense": 0
+  },
+  {
+   "id": "11_71238418_T_C",
+   "gene": "KRTAP5-7",
+   "missense": 0
+  },
+  {
+   "id": "11_76908662_T_C",
+   "gene": "MYO7A",
+   "missense": 0
+  },
+  {
+   "id": "11_103029622_G_T",
+   "gene": "DYNC2H1",
+   "missense": 0
+  },
+  {
+   "id": "11_134054713_C_T",
+   "gene": "NCAPD3",
+   "missense": 0
+  },
+  {
+   "id": "12_25398282_C_A",
+   "gene": "KRAS",
+   "missense": 1
+  },
+  {
+   "id": "12_26755258_G_T",
+   "gene": "ITPR2",
+   "missense": 0
+  },
+  {
+   "id": "12_50190607_C_A",
+   "gene": "NCKAP5L",
+   "missense": 1
+  },
+  {
+   "id": "12_81004356_G_A",
+   "gene": "PTPRQ",
+   "missense": 1
+  },
+  {
+   "id": "12_107264597_G_T",
+   "gene": "RIC8B",
+   "missense": 0
+  },
+  {
+   "id": "15_51276174_G_T",
+   "gene": "AP4E1",
+   "missense": 0
+  },
+  {
+   "id": "15_51276179_G_T",
+   "gene": "AP4E1",
+   "missense": 0
+  },
+  {
+   "id": "16_1204082_A_G",
+   "gene": "RP11-616M22.1",
+   "missense": 0
+  },
+  {
+   "id": "16_46386261_T_G",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46386432_G_T",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46387352_G_A",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46388629_T_C",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46388723_T_G",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46389151_A_T",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46390225_G_C",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46390773_C_A",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46391717_A_T",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46392766_C_T",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46399506_G_C",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46399631_C_T",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46401340_T_A",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46401824_C_T",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46402080_G_C",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46403407_G_A",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46405862_G_C",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46405934_A_C",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46406103_A_T",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46406622_A_G",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46407314_A_T",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46407482_T_G",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46407815_T_C",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46408678_C_T",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46408686_C_G",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46417261_T_C",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46424701_A_G",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46424782_T_C",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_46432966_A_G",
+   "gene": "PPP1R1AP2-ANKRD26P1",
+   "missense": 0
+  },
+  {
+   "id": "16_57562841_C_A",
+   "gene": "CCDC102A",
+   "missense": 0
+  },
+  {
+   "id": "17_22253154_T_G",
+   "gene": "RP11-846F4.11-RP11-260A9.1",
+   "missense": 0
+  },
+  {
+   "id": "17_22253293_A_G",
+   "gene": "RP11-846F4.11-RP11-260A9.1",
+   "missense": 0
+  },
+  {
+   "id": "17_22258530_T_G",
+   "gene": "RP11-846F4.11-RP11-260A9.1",
+   "missense": 0
+  },
+  {
+   "id": "17_26950880_C_A",
+   "gene": "KIAA0100",
+   "missense": 1
+  },
+  {
+   "id": "17_41401024_A_G",
+   "gene": "LINC00854-LINC00910",
+   "missense": 0
+  },
+  {
+   "id": "17_46053334_A_G",
+   "gene": "CDK5RAP3",
+   "missense": 0
+  },
+  {
+   "id": "17_57719368_T_G",
+   "gene": "CLTC",
+   "missense": 0
+  },
+  {
+   "id": "17_72791089_A_G",
+   "gene": "TMEM104",
+   "missense": 0
+  },
+  {
+   "id": "17_74017594_A_G",
+   "gene": "EVPL",
+   "missense": 0
+  },
+  {
+   "id": "18_15006315_A_C",
+   "gene": "RP11-805F19.4",
+   "missense": 0
+  },
+  {
+   "id": "19_2247087_T_C",
+   "gene": "AMH",
+   "missense": 0
+  },
+  {
+   "id": "19_17397477_G_T",
+   "gene": "ANKLE1",
+   "missense": 1
+  },
+  {
+   "id": "21_11047515_A_G",
+   "gene": "BAGE2",
+   "missense": 0
+  },
+  {
+   "id": "21_43226265_T_C",
+   "gene": "PRDM15",
+   "missense": 0
+  },
+  {
+   "id": "21_47769447_A_G",
+   "gene": "PCNT",
+   "missense": 0
+  },
+  {
+   "id": "22_20043800_C_A",
+   "gene": "TANGO2",
+   "missense": 0
+  },
+  {
+   "id": "X_13397443_G_A",
+   "gene": "RP11-1L9.1",
+   "missense": 0
+  },
+  {
+   "id": "X_61714110_T_C",
+   "gene": "KRT8P17-RP11-3D23.1",
+   "missense": 0
+  },
+  {
+   "id": "X_61719542_T_C",
+   "gene": "KRT8P17-RP11-3D23.1",
+   "missense": 0
+  },
+  {
+   "id": "X_61719557_C_T",
+   "gene": "KRT8P17-RP11-3D23.1",
+   "missense": 0
+  },
+  {
+   "id": "MT_10764_T_C",
+   "gene": "MT-ND4L",
+   "missense": 0
+  },
+  {
+   "id": "MT_13579_G_A",
+   "gene": "MT-ND5",
+   "missense": 1
+  }
+ ],
+ "neoantigens": [
+  {
+   "id": "1_12333129_A_G_8_9_B3501",
+   "mutation_id": "1_12333129_A_G",
+   "HLA_gene_id": "HLA-B35:01",
+   "sequence": "VIFPDDFEF",
+   "WT_sequence": "VIFPDDFKF",
+   "mutated_position": 8,
+   "Kd": 32.0,
+   "KdWT": 92.0,
+   "R": 0.9608727027412663,
+   "logC": 0.9016297022845844,
+   "logA": 1.0560526742493137,
+   "quality": 0.9814916302611025
+  },
+  {
+   "id": "1_12333129_A_G_8_9_B1501",
+   "mutation_id": "1_12333129_A_G",
+   "HLA_gene_id": "HLA-B15:01",
+   "sequence": "VIFPDDFEF",
+   "WT_sequence": "VIFPDDFKF",
+   "mutated_position": 8,
+   "Kd": 332.0,
+   "KdWT": 2749.0,
+   "R": 0.9608727027412663,
+   "logC": 0.9016297022845844,
+   "logA": 2.113857519248757,
+   "quality": 1.7702080030023082
+  },
+  {
+   "id": "1_248224489_A_G_5_9_B3501",
+   "mutation_id": "1_248224489_A_G",
+   "HLA_gene_id": "HLA-B35:01",
+   "sequence": "IPYCRSRAI",
+   "WT_sequence": "IPYCQSRAI",
+   "mutated_position": 5,
+   "Kd": 493.0,
+   "KdWT": 167.0,
+   "R": 0.0,
+   "logC": 2.3855360237431134,
+   "logA": -1.082515361625935,
+   "quality": -0.0
+  },
+  {
+   "id": "1_248224489_A_G_1_9_B1501",
+   "mutation_id": "1_248224489_A_G",
+   "HLA_gene_id": "HLA-B15:01",
+   "sequence": "RSRAINHFF",
+   "WT_sequence": "QSRAINHFF",
+   "mutated_position": 1,
+   "Kd": 73.0,
+   "KdWT": 322.0,
+   "R": 0.0,
+   "logC": 0.599859398221333,
+   "logA": 1.4840921043960171,
+   "quality": 0.0
+  },
+  {
+   "id": "6_33048530_G_A_5_9_A0201",
+   "mutation_id": "6_33048530_G_A",
+   "HLA_gene_id": "HLA-A02:01",
+   "sequence": "YIYNQEEFA",
+   "WT_sequence": "YIYNREEFA",
+   "mutated_position": 5,
+   "Kd": 197.0,
+   "KdWT": 205.0,
+   "R": 0.0,
+   "logC": 2.3855360237431134,
+   "logA": 0.039806250400419574,
+   "quality": 0.0
+  },
+  {
+   "id": "6_33048530_G_A_3_9_B1501",
+   "mutation_id": "6_33048530_G_A",
+   "HLA_gene_id": "HLA-B15:01",
+   "sequence": "YNQEEFARF",
+   "WT_sequence": "YNREEFARF",
+   "mutated_position": 3,
+   "Kd": 481.0,
+   "KdWT": 245.0,
+   "R": 0.8911371281207195,
+   "logC": 1.667717607950373,
+   "logA": -0.6746090595610342,
+   "quality": -0.13356053391525624
+  },
+  {
+   "id": "6_136594277_G_A_9_9_A0201",
+   "mutation_id": "6_136594277_G_A",
+   "HLA_gene_id": "HLA-A02:01",
+   "sequence": "MTLNERFTL",
+   "WT_sequence": "MTLNERFTS",
+   "mutated_position": 9,
+   "Kd": 410.0,
+   "KdWT": 15729.0,
+   "R": 0.9837360926869559,
+   "logC": 6.877643573920873,
+   "logA": 3.6471042615422893,
+   "quality": 4.299729363222034
+  },
+  {
+   "id": "6_136594277_G_A_8_9_B1501",
+   "mutation_id": "6_136594277_G_A",
+   "HLA_gene_id": "HLA-B15:01",
+   "sequence": "TLNERFTLY",
+   "WT_sequence": "TLNERFTSY",
+   "mutated_position": 8,
+   "Kd": 94.0,
+   "KdWT": 29.0,
+   "R": 0.9837360926869559,
+   "logC": 5.518887600712625,
+   "logA": -1.17599895228353,
+   "quality": 0.3185361507222441
+  },
+  {
+   "id": "9_80537112_T_A_8_9_A0201",
+   "mutation_id": "9_80537112_T_A",
+   "HLA_gene_id": "HLA-A02:01",
+   "sequence": "AMIRAMDSL",
+   "WT_sequence": "AMIRAMDTL",
+   "mutated_position": 8,
+   "Kd": 97.0,
+   "KdWT": 113.0,
+   "R": 0.0,
+   "logC": 1.5495164419320464,
+   "logA": 0.1526768402089578,
+   "quality": 0.0
+  },
+  {
+   "id": "9_80537112_T_A_8_9_B1501",
+   "mutation_id": "9_80537112_T_A",
+   "HLA_gene_id": "HLA-B15:01",
+   "sequence": "AMIRAMDSL",
+   "WT_sequence": "AMIRAMDTL",
+   "mutated_position": 8,
+   "Kd": 107.0,
+   "KdWT": 242.0,
+   "R": 0.0,
+   "logC": 1.5495164419320464,
+   "logA": 0.8161088916947803,
+   "quality": 0.0
+  },
+  {
+   "id": "9_80537112_T_A_4_9_B1501",
+   "mutation_id": "9_80537112_T_A",
+   "HLA_gene_id": "HLA-B15:01",
+   "sequence": "AMDSLKIPY",
+   "WT_sequence": "AMDTLKIPY",
+   "mutated_position": 4,
+   "Kd": 323.0,
+   "KdWT": 617.0,
+   "R": 0.0,
+   "logC": 2.3790879389839183,
+   "logA": 0.6472167006827313,
+   "quality": 0.0
+  },
+  {
+   "id": "12_50190607_C_A_9_9_A0201",
+   "mutation_id": "12_50190607_C_A",
+   "HLA_gene_id": "HLA-A02:01",
+   "sequence": "YLQAFLAGS",
+   "WT_sequence": "YLQAFLAGA",
+   "mutated_position": 9,
+   "Kd": 115.0,
+   "KdWT": 9.0,
+   "R": 0.0,
+   "logC": 2.7071682659217218,
+   "logA": -2.5477075510270306,
+   "quality": -0.0
+  },
+  {
+   "id": "12_50190607_C_A_8_9_B1501",
+   "mutation_id": "12_50190607_C_A",
+   "HLA_gene_id": "HLA-B15:01",
+   "sequence": "LQAFLAGSA",
+   "WT_sequence": "LQAFLAGAA",
+   "mutated_position": 8,
+   "Kd": 196.0,
+   "KdWT": 213.0,
+   "R": 0.0,
+   "logC": 2.1723366753826454,
+   "logA": 0.08317750647890793,
+   "quality": 0.0
+  },
+  {
+   "id": "12_50190607_C_A_5_9_A0201",
+   "mutation_id": "12_50190607_C_A",
+   "HLA_gene_id": "HLA-A02:01",
+   "sequence": "FLAGSAGPL",
+   "WT_sequence": "FLAGAAGPL",
+   "mutated_position": 5,
+   "Kd": 19.0,
+   "KdWT": 21.0,
+   "R": 0.9569920163861136,
+   "logC": 4.710233086061793,
+   "logA": 0.10008345855698263,
+   "quality": 1.084136127028275
+  },
+  {
+   "id": "12_50190607_C_A_5_9_B1501",
+   "mutation_id": "12_50190607_C_A",
+   "HLA_gene_id": "HLA-B15:01",
+   "sequence": "FLAGSAGPL",
+   "WT_sequence": "FLAGAAGPL",
+   "mutated_position": 5,
+   "Kd": 140.0,
+   "KdWT": 131.0,
+   "R": 0.9569920163861136,
+   "logC": 4.710233086061793,
+   "logA": -0.06644509940815274,
+   "quality": 0.9604712173116454
+  },
+  {
+   "id": "17_26950880_C_A_9_9_B3501",
+   "mutation_id": "17_26950880_C_A",
+   "HLA_gene_id": "HLA-B35:01",
+   "sequence": "HPAWYGDTF",
+   "WT_sequence": "HPAWYGDTL",
+   "mutated_position": 9,
+   "Kd": 12.0,
+   "KdWT": 54.0,
+   "R": 0.525579969031186,
+   "logC": 4.323456645974024,
+   "logA": 1.5040773967762742,
+   "quality": 1.1224707192052954
+  },
+  {
+   "id": "MT_13579_G_A_2_9_B3501",
+   "mutation_id": "MT_13579_G_A",
+   "HLA_gene_id": "HLA-B35:01",
+   "sequence": "ITTSLTSAY",
+   "WT_sequence": "IATSLTSAY",
+   "mutated_position": 2,
+   "Kd": 31.0,
+   "KdWT": 3.0,
+   "R": 0.0,
+   "logC": 1.31418296342764,
+   "logA": -2.3353749158170367,
+   "quality": -0.0
+  },
+  {
+   "id": "MT_13579_G_A_2_9_B1501",
+   "mutation_id": "MT_13579_G_A",
+   "HLA_gene_id": "HLA-B15:01",
+   "sequence": "ITTSLTSAY",
+   "WT_sequence": "IATSLTSAY",
+   "mutated_position": 2,
+   "Kd": 211.0,
+   "KdWT": 338.0,
+   "R": 0.0,
+   "logC": 1.31418296342764,
+   "logA": 0.47118776200695234,
+   "quality": 0.0
+  }
+ ]
+}
