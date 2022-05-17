@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""script for computing alignments of neoantigens to IEDB peptides
+    Copyright (C) 2022 Marta Luksza
+"""
+
+
 import glob
 import json
 import os

@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""script for computing clone frequency predictions
+    Copyright (C) 2022 Marta Luksza
+"""
+
 import glob
 import json
 import os

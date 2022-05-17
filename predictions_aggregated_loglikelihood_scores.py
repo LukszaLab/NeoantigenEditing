@@ -1,7 +1,12 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""script for comparing fitness models and computing log-likelihood scores
+    Copyright (C) 2022 Marta Luksza
+"""
+
 import glob
 import json
 import os
-
 import numpy as np
 import pandas as pd
 
