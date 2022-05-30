@@ -16,6 +16,17 @@ from scipy.stats import spearmanr
 
 
 def set_fitness_on_a_tree(tree, weights):
+    '''
+    Sets fitness attribute to all clones, computed as the weighted sum of the immune and
+    driver gene component.
+
+    :param tree: dict
+        json representation of a  tree
+
+    :param weights: dict
+        weights of the fitness model components, Sigma_I and Sigma_P.
+
+    '''
     nodes = [tree["topology"]]
     while nodes:
         node = nodes[0]
@@ -30,16 +41,21 @@ def set_fitness_on_a_tree(tree, weights):
         node["fitness"] = node["F_I"] * weights["Sigma_I"] + node["F_P"] * weights["Sigma_P"]
 
 
-def compute_predicted_cumulative_frequencies_rec(node):
-    if "children" not in node:
-        node["predicted_X"] = node["predicted_x"]
-    else:
-        cvals = [compute_predicted_cumulative_frequencies_rec(child) for child in node["children"]]
-        node["predicted_X"] = sum(cvals)
-    return node["predicted_X"]
+#def compute_predicted_cumulative_frequencies_rec(node):
+#    if "children" not in node:
+#        node["predicted_X"] = node["predicted_x"]
+#    else:
+#        cvals = [compute_predicted_cumulative_frequencies_rec(child) for child in node["children"]]
+#        node["predicted_X"] = sum(cvals)
+#    return node["predicted_X"]
 
 
 def compute_predicted_cumulative_frequencies(tree):
+    '''
+    Computes \hat X^\alpha_{rec}, Eq. 19 from Methods,
+    the predicted inclusive clone frequency (CCF). Sets "predicted_X" attribute
+    of all clones.
+    '''
     def path2root(nid, parent):
         if nid == 0:
             return [nid]
@@ -66,6 +82,9 @@ def compute_predicted_cumulative_frequencies(tree):
 
 
 def predict_on_a_tree(tree):
+    '''
+    Compute "predicted_x" attribute of all clones (Eq. 18, Methods)
+    '''
     nodes = [tree["topology"]]
     Z = 0.0
     while nodes:
@@ -77,7 +96,7 @@ def predict_on_a_tree(tree):
         node["predicted_x"] = node["x"] * np.exp(node["fitness"])
         Z += node["predicted_x"]
 
-    # normalize
+    # normalize frequencies
     nodes = [tree["topology"]]
     while nodes:
         node = nodes[0]
@@ -90,6 +109,9 @@ def predict_on_a_tree(tree):
 
 
 def get_property(tree, property):
+    '''
+    Auxiliary function
+    '''
     nodes = [tree["topology"]]
     vals = []
     while nodes:

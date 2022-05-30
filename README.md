@@ -6,16 +6,16 @@
 Code for computing neoantigen qualities and for 
 performing clone composition predictions.
 
-data folder:
+The input data are the following:
 
-data/Patient_data - folder with phylogenies for each of the patients. Top 5 scoring trees are provided for each patient.
+**data/Patient_data** - folder with phylogenies for each of the patients. Top 5 scoring trees are provided for each patient.
 Tree clones are annotated with mutations, predicted neoantigens and clone frequencies.
 
-data/epitope_distance_model_parameters.json - cross-reactivity metric
+**data/epitope_distance_model_parameters.json** - cross-reactivity metric
 
-data/fitness_weights.txt - optimized fitness model weights for each recurrent tumor.
+**data/fitness_weights.txt** - optimized fitness model weights for each recurrent tumor.
 
-data/iedb.fasta - IEDB epitopes used for the analysis in the paper (downloaded from the IEDB on January 2022)
+**data/iedb.fasta** - IEDB epitopes used for the analysis in the paper (downloaded from the IEDB on January 2022)
 
 To run the code:
 
