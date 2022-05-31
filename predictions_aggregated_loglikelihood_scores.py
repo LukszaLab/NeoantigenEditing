@@ -267,7 +267,8 @@ def optimize_weights(prim_json, rec_json):
 if __name__ == "__main__":
 
     '''
-    Performs clone frequency predictions
+    Performs clone frequency predictions and evaluates log-likelihood score of predictions
+    as compared to the null model with no selection.
      
     '''
 
@@ -299,21 +300,22 @@ if __name__ == "__main__":
 
             sample = rec_json["id"]
 
-#            print(fitness_weights[sample])
-#            print("-----")
-
             cohort = prim_json["cohort"]
 
-            predict(prim_json, opt_w) #fitness_weights[sample])
+            predict(prim_json, opt_w)
 
             # log-likelihood score
-#            N_eff1 = effective_sample_size[sample]
             N_eff = rec_json["Effective_N"]
-#            print(N_eff, N_eff1)
             prediction_KL = KL_prediction(prim_json, rec_json)
+
+            # BIC correction of log-likelihood of the full model (2 parameters)
             prediction_ML = -N_eff * prediction_KL - 2 * np.log(N_eff) / 2
             null_KL = KL_null(prim_json, rec_json)
+
+            # BIC correction of log-likelihood of the null model (no parameters)
             null_ML = -N_eff * null_KL
+
+            # difference in log-likelihoods
             delta_ll = prediction_ML - null_ML
             aggregated_LL[cohort] += delta_ll
             lls[cohort].append(delta_ll)
