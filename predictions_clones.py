@@ -40,16 +40,6 @@ def set_fitness_on_a_tree(tree, weights):
                 nodes.append(child)
         node["fitness"] = node["F_I"] * weights["Sigma_I"] + node["F_P"] * weights["Sigma_P"]
 
-
-#def compute_predicted_cumulative_frequencies_rec(node):
-#    if "children" not in node:
-#        node["predicted_X"] = node["predicted_x"]
-#    else:
-#        cvals = [compute_predicted_cumulative_frequencies_rec(child) for child in node["children"]]
-#        node["predicted_X"] = sum(cvals)
-#    return node["predicted_X"]
-
-
 def compute_predicted_cumulative_frequencies(tree):
     '''
     Computes \hat X^\alpha_{rec}, Eq. 19 from Methods,
