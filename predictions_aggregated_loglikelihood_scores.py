@@ -35,14 +35,6 @@ def set_fitness_on_a_tree(tree, weights):
                 nodes.append(child)
         node["fitness"] = node["F_I"] * weights["Sigma_I"] + node["F_P"] * weights["Sigma_P"]
 
-
-def path2root(nid, parent):
-    if nid == 0:
-        return [nid]
-    else:
-        rpath = [nid] + path2root(parent[nid], parent)
-        return rpath
-
 def get_property(tree, property):
     '''
     Auxiliary function to extract a clone attribute values into a list
