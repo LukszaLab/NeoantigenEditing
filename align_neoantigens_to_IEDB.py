@@ -5,6 +5,7 @@
 """
 
 
+import glob
 import json
 import os
 import subprocess
@@ -17,9 +18,8 @@ import pandas as pd
 from Bio import SeqIO
 from Bio.pairwise2 import align
 
-
 def load_blosum62_mat():
-    raw_blosum62_mat_str = """
+    raw_blosum62_mat_str = '''
    A  R  N  D  C  Q  E  G  H  I  L  K  M  F  P  S  T  W  Y  V  B  Z  X  *
 A  4 -1 -2 -2  0 -1 -1  0 -2 -1 -1 -1 -1 -2 -1  1  0 -3 -2  0 -2 -1  0 -4 
 R -1  5  0 -2 -3  1  0 -2  0 -3 -2  2 -1 -3 -2 -1 -1 -3 -2 -3 -1  0 -1 -4 
@@ -45,23 +45,16 @@ B -2 -1  3  4 -3  0  1 -1  0 -3 -4  0 -3 -3 -2  0 -1 -4 -3 -3  4  1 -1 -4
 Z -1  0  0  1 -3  3  4 -2  0 -3 -3  1 -1 -3 -1  0 -1 -3 -2 -2  1  4 -1 -4 
 X  0 -1 -1 -1 -2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -2  0  0 -2 -1 -1 -1 -1 -1 -4 
 * -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4  1
-"""
-    amino_acids = "ACDEFGHIKLMNPQRSTVWY"
-    blosum62_mat_str_list = [
-        l.split() for l in raw_blosum62_mat_str.strip().split("\n")
-    ]
+'''
+    amino_acids='ACDEFGHIKLMNPQRSTVWY'
+    blosum62_mat_str_list = [l.split() for l in raw_blosum62_mat_str.strip().split('\n')]
     blosum_aa_order = [blosum62_mat_str_list[0].index(aa) for aa in amino_acids]
 
     blosum62_mat = np.zeros((len(amino_acids), len(amino_acids)))
     for i, bl_ind in enumerate(blosum_aa_order):
-        blosum62_mat[i] = np.array(
-            [int(x) for x in blosum62_mat_str_list[bl_ind + 1][1:]]
-        )[blosum_aa_order]
-    blosum62 = {
-        (aaA, aaB): blosum62_mat[i, j]
-        for i, aaA in enumerate(amino_acids)
-        for j, aaB in enumerate(amino_acids)
-    }
+        blosum62_mat[i] = np.array([int(x) for x in blosum62_mat_str_list[bl_ind + 1][1:]])[blosum_aa_order]
+    blosum62 = {(aaA, aaB): blosum62_mat[i, j] for i, aaA in enumerate(amino_acids)
+                         for j, aaB in enumerate(amino_acids)}
     return blosum62
 
 
@@ -73,7 +66,7 @@ def align_peptides(seq1, seq2, matrix):
 
 
 def run_blastp_n(pep_list, blastdb):
-    """
+    '''
     Run BLASTP on the given n neoantigens
 
     :param pep_list: list
@@ -84,7 +77,7 @@ def run_blastp_n(pep_list, blastdb):
 
     :return: dict
         str (peptide) -> list of IEDB identifiers
-    """
+    '''
 
     if blastdb is None:
         raise ValueError("No BLAST database specified")
@@ -103,29 +96,11 @@ def run_blastp_n(pep_list, blastdb):
             fh.write(">seq_{}\n{}\n".format(seqid, neoseq))
     # run BLASTP
     blastpexe = "blastp"
-    blast_args = [
-        blastpexe,
-        "-db",
-        blastdb,
-        "-query",
-        fa_file,
-        "-outfmt",
-        "6 qseqid sacc score",
-        "-gapopen",
-        "32767",
-        "-gapextend",
-        "32767",
-        "-evalue",
-        "1e6",
-        "-max_hsps",
-        "1",
-        "-matrix",
-        "BLOSUM62",
-        "-max_target_seqs",
-        "10000000",
-        "-out",
-        txt_file,
-    ]
+    blast_args = [blastpexe, "-db", blastdb, "-query", fa_file,
+                  "-outfmt", "6 qseqid sacc score",
+                  "-gapopen", "32767", "-gapextend", "32767",
+                  "-evalue", "1e6", "-max_hsps", "1", "-matrix", "BLOSUM62",
+                  "-max_target_seqs", "10000000", "-out", txt_file]
 
     subprocess.check_call(blast_args)
     os.unlink(fa_file)
@@ -141,7 +116,7 @@ def run_blastp_n(pep_list, blastdb):
 
 
 def run_blastp(peplist, blastdb, n=1000):
-    """
+    '''
     Blast peptides in neolist against peptides in blastdb.
 
     :param peplist: list
@@ -155,11 +130,11 @@ def run_blastp(peplist, blastdb, n=1000):
 
     :return: dict
         dictionary mapping neoantigen peptide sequences to alignment candidates
-    """
+    '''
 
     alignments = defaultdict(set)
     for i in range(0, len(peplist) + n, n):  # run blastp in batches of size n
-        peplist0 = peplist[i : (i + n)]
+        peplist0 = peplist[i:(i + n)]
         if len(peplist0) == 0:
             continue
         alignments0 = run_blastp_n(peplist0, blastdb)
@@ -170,26 +145,26 @@ def run_blastp(peplist, blastdb, n=1000):
 
 
 def prepare_blastdb(peptidesfasta):
-    """
+    '''
     Builds BLAST database
 
     :param peptidesfasta: str
         path to the IEDB.fasta file
-    """
+    '''
     instr = ["makeblastdb", "-in", peptidesfasta, "-dbtype", "prot", ">", "/dev/null"]
     instr = "\t".join(instr)
     os.system(instr)
 
 
 def load_epitopes(iedbfasta):
-    """
+    '''
     Load IEDB epitopes from fasta file
 
     :param iedbfasta: str
 
     :return: dict
         IEDB epitope identifiers mapped to epitope sequence
-    """
+    '''
     epitopes = {}
     with open(iedbfasta) as f:
         seqs = SeqIO.parse(f, "fasta")

@@ -16,7 +16,7 @@ from EpitopeDistance import EpitopeDistance
 
 
 def fill_up_clone_mutations(tree, mut2missense):
-    """
+    '''
     Fills up the field with all mutations for each clone on the tree
 
     :param tree: dict
@@ -27,7 +27,7 @@ def fill_up_clone_mutations(tree, mut2missense):
 
     :return: dict
         json dictionary with filled up mutations
-    """
+    '''
 
     nodes = [(tree["topology"], [])]
     while len(nodes) > 0:
@@ -42,7 +42,7 @@ def fill_up_clone_mutations(tree, mut2missense):
 
 
 def fill_up_clone_neoantigens(tree, mut2neo):
-    """
+    '''
     Adds neoantigen field for each clone on the tree
 
     :param tree: dict
@@ -54,24 +54,21 @@ def fill_up_clone_neoantigens(tree, mut2neo):
 
     :return: dict
         annotated json dictionary
-    """
+    '''
 
     nodes = [tree["topology"]]
     while len(nodes) > 0:
         node = nodes[0]
         nodes = nodes[1:]
-        node["neoantigens"] = [
-            neo["id"] for mid in node["all_mutations"] for neo in mut2neo[mid]
-        ]
+        node["neoantigens"] = [neo["id"] for mid in node["all_mutations"] for neo in mut2neo[mid]]
         node["neoantigen_load"] = len(node["neoantigens"])
         node["NA_Mut"] = sum([len(mut2neo[mid]) > 0 for mid in node["all_mutations"]])
         if "children" in node:
             for child in node["children"]:
                 nodes.append(child)
 
-
 def mark_driver_gene_mutations(pjson):
-    """
+    '''
     Create a dictionary mapping mutation identifiers to their driver gene status
     (1 - in a driver gene, 0 - not in a driver gene)
 
@@ -80,17 +77,16 @@ def mark_driver_gene_mutations(pjson):
 
     :return dict
         (str -> int)
-    """
+    '''
 
-    dg_genes = set(["TP53", "KRAS", "CDKN2A", "SMAD4"])
+    dg_genes = set(['TP53', 'KRAS', 'CDKN2A', 'SMAD4'])
     mutid2dg = {}
     for mut in pjson["mutations"]:
         mutid2dg[mut["id"]] = mut["gene"] in dg_genes
     return mutid2dg
 
-
 def mark_missense_mutations(pjson):
-    """
+    '''
     Create a dictionary mapping mutation identifiers to their missense status
     (1 - is a missense mutation, 0 - not a missense mutation)
 
@@ -99,13 +95,12 @@ def mark_missense_mutations(pjson):
 
     :return dict
         (str -> int)
-    """
+    '''
 
     mut2missense = {}
     for mut in pjson["mutations"]:
         mut2missense[mut["id"]] = mut["missense"]
     return mut2missense
-
 
 def map_neoantigen_qualities(pjson):
     neoid2quality = {}
@@ -113,9 +108,8 @@ def map_neoantigen_qualities(pjson):
         neoid2quality[neo["id"]] = neo["quality"]
     return neoid2quality
 
-
 def get_property(tree, property):
-    """
+    '''
     Auxiliary function to extract a clone attribute values into a list
     :param tree: dict
         json representation of a tree
@@ -124,7 +118,7 @@ def get_property(tree, property):
         name of the attribute
 
     :return list
-    """
+    '''
 
     nodes = [tree["topology"]]
     vals = []
@@ -139,16 +133,15 @@ def get_property(tree, property):
     vals = [x for (_, x) in vals]
     return vals
 
-
 def compute_effective_sample_size(sample_json):
-    """
+    '''
     Computes the effective cancer cell population size for each sample (see Methods, p.10)
 
     :param sample_json: dict
         json representation of a sample
 
     :return float
-    """
+    '''
 
     mut_freqs = {}
     for mut in sample_json["mutations"]:
@@ -159,12 +152,9 @@ def compute_effective_sample_size(sample_json):
         for clone_muts, X in zip(clone_muts_list, freqs):
             for mid in clone_muts:
                 mut_freqs[mid].append(X)
-    avev = np.mean(
-        [np.var(mut_freqs[mid]) if mut_freqs[mid] else 0 for mid in mut_freqs]
-    )
-    n = 1 / avev
+    avev = np.mean([np.var(mut_freqs[mid]) if mut_freqs[mid] else 0 for mid in mut_freqs])
+    n = 1/avev
     return n
-
 
 INF = float("inf")
 
@@ -186,7 +176,7 @@ def log_sum(v):
 
 
 def compute_R(scores, a, k):
-    """
+    '''
     Computes the value of the R component given the alignment scores and parameters a and k
 
     :param  scores: list
@@ -200,7 +190,7 @@ def compute_R(scores, a, k):
 
     :return float
 
-    """
+    '''
     v = [-k * (a - score) for score in scores]
     lgb = log_sum(v)
     lZ = log_sum2(0, lgb)
@@ -209,7 +199,7 @@ def compute_R(scores, a, k):
 
 
 def set_immune_fitness(tree, neo2qualities):
-    """
+    '''
     Sets the value of the immune fitness component for each clone in the tree
     as the negative of the max quality neoantigen.
 
@@ -218,14 +208,14 @@ def set_immune_fitness(tree, neo2qualities):
 
     :param neo2qualities: dict
         mapping neoantigen identifiers to their qualities (str->float)
-    """
+    '''
 
     nodes = [tree["topology"]]
     while len(nodes) > 0:
         node = nodes[0]
         nodes = nodes[1:]
         if node["neoantigens"]:
-            node["F_I"] = -max([neo2qualities[neoid] for neoid in node["neoantigens"]])
+            node["F_I"] = -max([neo2qualities[neoid] for neoid in node['neoantigens']])
         else:
             node["F_I"] = 0
         if "children" in node:
@@ -234,7 +224,7 @@ def set_immune_fitness(tree, neo2qualities):
 
 
 def set_driver_gene_fitness(tree, mut2dg):
-    """
+    '''
     Sets the driver-gene fitness component for each clone in the tree
     as the number of driver gene mutations in that clone.
 
@@ -243,7 +233,7 @@ def set_driver_gene_fitness(tree, mut2dg):
 
     :param mut2dg: dict
         mapping mutation identifiers to 1 if this is a mutation in a driver gene or to 0.
-    """
+    '''
     nodes = [tree["topology"]]
     while len(nodes) > 0:
         node = nodes[0]
@@ -258,9 +248,9 @@ def set_driver_gene_fitness(tree, mut2dg):
 
 
 def clean_data(tree):
-    """
+    '''
     Removes no longer needed clone attributes.
-    """
+    '''
     nodes = [tree["topology"]]
     while len(nodes) > 0:
         node = nodes[0]
