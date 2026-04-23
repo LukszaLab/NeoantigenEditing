@@ -188,12 +188,23 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(prog="align_neoantigens_to_IEDB")
     parser.add_argument("--fasta", help="IEDB fasta file", required=True)
-    parser.add_argument("--input", help="patient_data file", required=True)
+    parser.add_argument("--sample_file", help="single sample file", required=False)
+    parser.add_argument("--patient_folder", help="patient_data folder", required=False)
 
     args = parser.parse_args()
 
     iedb_file = args.fasta
-    patient_file = args.input
+    single_sample_file = args.sample_file
+    patient_folder = args.patient_folder
+    if single_sample_file is None and patient_folder is None:
+        raise ValueError("Either --sample_file or --patient_folder must be specified")
+    if single_sample_file is not None and patient_folder is not None:
+        raise ValueError("Only one of --sample_file or --patient_folder can be specified")
+    if patient_folder is not None:
+        patient_dirs = glob.glob(os.path.join(patient_folder, "*", "Primary"))
+        patient_files = [glob.glob(os.path.join(pdir, "*.json"))[0] for pdir in patient_dirs]
+    if single_sample_file is not None:
+        patient_files = [single_sample_file]
 
     # blosum62
 
@@ -203,39 +214,40 @@ if __name__ == "__main__":
     prepare_blastdb(iedb_file)
     epitopes = load_epitopes(iedb_file)
 
-    with open(patient_file) as f:
-        pjson = json.load(f)
-    patient = pjson["patient"]
-    neoantigens = pjson["neoantigens"]
-    peptides = set(
-        [("_".join(neo["id"].split("_")[:-1]), neo["sequence"]) for neo in neoantigens]
-    )
-    pepseq2pepid = defaultdict(set)
-    for pep_id, pep_seq in peptides:
-        pepseq2pepid[pep_seq].add(pep_id)
+    for patient_file in patient_files:
+        with open(patient_file) as f:
+            pjson = json.load(f)
+        patient = pjson["patient"]
+        neoantigens = pjson["neoantigens"]
+        peptides = set(
+            [("_".join(neo["id"].split("_")[:-1]), neo["sequence"]) for neo in neoantigens]
+        )
+        pepseq2pepid = defaultdict(set)
+        for pep_id, pep_seq in peptides:
+            pepseq2pepid[pep_seq].add(pep_id)
 
-    seqlist = list(set([pep_seq for pep_id, pep_seq in peptides]))
-    alignments = run_blastp(seqlist, iedb_file, n=100)
-    scores = []
-    aln_data = []
-    for pep_seq in alignments:
-        for epitope_id in alignments[pep_seq]:
-            episeq = epitopes[epitope_id]
-            score = align_peptides(pep_seq, episeq, blosum62).score
-            pep_ids = pepseq2pepid[pep_seq]
-            for pep_id in pep_ids:
-                aln_data.append([pep_id, pep_seq, epitope_id, score])
-    if len(aln_data):
-        aln_data = pd.DataFrame(aln_data)
-        aln_data.columns = [
-            "Peptide_ID",
-            "Peptide",
-            "Epitope_ID",
-            "Alignment_score",
-        ]
-    else:
-        aln_data = pd.DataFrame(columns=["Peptide_ID","Peptide","Epitope_ID","Alignment_score"])
-    aln_data.to_csv(
-        "iedb_alignments_" + patient + ".txt", sep="\t", index=False
-    )
+        seqlist = list(set([pep_seq for pep_id, pep_seq in peptides]))
+        alignments = run_blastp(seqlist, iedb_file, n=100)
+        scores = []
+        aln_data = []
+        for pep_seq in alignments:
+            for epitope_id in alignments[pep_seq]:
+                episeq = epitopes[epitope_id]
+                score = align_peptides(pep_seq, episeq, blosum62).score
+                pep_ids = pepseq2pepid[pep_seq]
+                for pep_id in pep_ids:
+                    aln_data.append([pep_id, pep_seq, epitope_id, score])
+        if len(aln_data):
+            aln_data = pd.DataFrame(aln_data)
+            aln_data.columns = [
+                "Peptide_ID",
+                "Peptide",
+                "Epitope_ID",
+                "Alignment_score",
+            ]
+        else:
+            aln_data = pd.DataFrame(columns=["Peptide_ID","Peptide","Epitope_ID","Alignment_score"])
+        aln_data.to_csv(
+            "iedb_alignments_" + patient + ".txt", sep="\t", index=False
+        )
         
