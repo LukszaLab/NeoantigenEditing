@@ -285,7 +285,7 @@ if __name__ == "__main__":
     parser.add_argument("--alignment", help="neoantigen alignment file", required=True)
     parser.add_argument("--sample_file", help="single sample file", required=False)
     parser.add_argument("--patient_folder", help="patient_data folder", required=False)
-    parser.add_argument("--kd_cutoff_fitness", help="Maximum Kd to include for fitness calculation", required=False, default=500, type=float)
+    parser.add_argument("--kd_cutoff_fitness", help="maximum Kd to include for fitness calculation", required=False, default=500, type=float)
 
     args = parser.parse_args()
 
