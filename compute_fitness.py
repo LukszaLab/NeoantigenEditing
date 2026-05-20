@@ -273,7 +273,7 @@ if __name__ == "__main__":
 
     Run as:
 
-    python compute_fitness.py
+    python compute_fitness.py --alignment <alignment_file> --sample_file <sample_file> --kd_cutoff_fitness <kd_cutoff>
 
     """
 
@@ -285,12 +285,14 @@ if __name__ == "__main__":
     parser.add_argument("--alignment", help="neoantigen alignment file", required=True)
     parser.add_argument("--sample_file", help="single sample file", required=False)
     parser.add_argument("--patient_folder", help="patient_data folder", required=False)
+    parser.add_argument("--kd_cutoff_fitness", help="Kd cutoff for fitness calculation", required=False, default=500, type=float)
 
     args = parser.parse_args()
 
     alignment_file = args.alignment
     single_sample_file = args.sample_file
     patient_folder = args.patient_folder
+    kd_cutoff_fitness = args.kd_cutoff_fitness
     sample_files = []
     if single_sample_file is None and patient_folder is None:
         raise ValueError("Either --sample_file or --patient_folder must be specified")
@@ -320,6 +322,9 @@ if __name__ == "__main__":
             sjson = json.load(f)
         patient = sjson["patient"]
         neoantigens = sjson["neoantigens"]
+        if kd_cutoff_fitness is not None:
+            neoantigens = [neo for neo in neoantigens if neo["Kd"] <= kd_cutoff_fitness]
+            sjson["neoantigens"] = neoantigens
         nalist = [neo["sequence"] for neo in neoantigens]
 
         alignments = pd.read_csv(alignment_file, sep="\t")
