@@ -273,7 +273,7 @@ if __name__ == "__main__":
 
     Run as:
 
-    python compute_fitness.py
+    python compute_fitness.py --alignment <alignment_file> --sample_file <sample_file> --kd_cutoff_fitness <kd_cutoff_fitness>
 
     """
 
@@ -285,12 +285,14 @@ if __name__ == "__main__":
     parser.add_argument("--alignment", help="neoantigen alignment file", required=True)
     parser.add_argument("--sample_file", help="single sample file", required=False)
     parser.add_argument("--patient_folder", help="patient_data folder", required=False)
+    parser.add_argument("--kd_cutoff_fitness", help="maximum Kd to include for fitness calculation", required=True, type=float)
 
     args = parser.parse_args()
 
     alignment_file = args.alignment
     single_sample_file = args.sample_file
     patient_folder = args.patient_folder
+    kd_cutoff_fitness = args.kd_cutoff_fitness
     sample_files = []
     if single_sample_file is None and patient_folder is None:
         raise ValueError("Either --sample_file or --patient_folder must be specified")
@@ -334,7 +336,10 @@ if __name__ == "__main__":
             neo["logC"] = epidist.epitope_dist(neo["sequence"], neo["WT_sequence"])
             neo["logA"] = np.log(neo["KdWT"] / neo["Kd"])
             neo["quality"] = (w * neo["logC"] + (1 - w) * neo["logA"]) * neo["R"]
-            mut2neo[neo["mutation_id"]].append(neo)
+            neo["is_eligible_fitness"] = False
+            if neo["Kd"] <= kd_cutoff_fitness:
+                neo["is_eligible_fitness"] = True
+                mut2neo[neo["mutation_id"]].append(neo)
 
         mut2dg = mark_driver_gene_mutations(sjson)
         mut2missense = mark_missense_mutations(sjson)
