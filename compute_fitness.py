@@ -273,7 +273,7 @@ if __name__ == "__main__":
 
     Run as:
 
-    python compute_fitness.py --alignment <alignment_file> --sample_file <sample_file> --kd_cutoff_fitness <kd_cutoff>
+    python compute_fitness.py --alignment <alignment_file> --sample_file <sample_file> --kd_cutoff_fitness <kd_cutoff_fitness>
 
     """
 
@@ -285,7 +285,7 @@ if __name__ == "__main__":
     parser.add_argument("--alignment", help="neoantigen alignment file", required=True)
     parser.add_argument("--sample_file", help="single sample file", required=False)
     parser.add_argument("--patient_folder", help="patient_data folder", required=False)
-    parser.add_argument("--kd_cutoff_fitness", help="maximum Kd to include for fitness calculation", required=False, default=500, type=float)
+    parser.add_argument("--kd_cutoff_fitness", help="maximum Kd to include for fitness calculation", required=True, type=float)
 
     args = parser.parse_args()
 
@@ -322,9 +322,6 @@ if __name__ == "__main__":
             sjson = json.load(f)
         patient = sjson["patient"]
         neoantigens = sjson["neoantigens"]
-        if kd_cutoff_fitness is not None:
-            neoantigens = [neo for neo in neoantigens if neo["Kd"] <= kd_cutoff_fitness]
-            sjson["neoantigens"] = neoantigens
         nalist = [neo["sequence"] for neo in neoantigens]
 
         alignments = pd.read_csv(alignment_file, sep="\t")
@@ -339,7 +336,10 @@ if __name__ == "__main__":
             neo["logC"] = epidist.epitope_dist(neo["sequence"], neo["WT_sequence"])
             neo["logA"] = np.log(neo["KdWT"] / neo["Kd"])
             neo["quality"] = (w * neo["logC"] + (1 - w) * neo["logA"]) * neo["R"]
-            mut2neo[neo["mutation_id"]].append(neo)
+            neo["is_eligible_fitness"] = False
+            if neo["Kd"] <= kd_cutoff_fitness:
+                neo["is_eligible_fitness"] = True
+                mut2neo[neo["mutation_id"]].append(neo)
 
         mut2dg = mark_driver_gene_mutations(sjson)
         mut2missense = mark_missense_mutations(sjson)
