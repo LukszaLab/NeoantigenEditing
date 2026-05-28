@@ -12,6 +12,7 @@ import subprocess
 import tempfile
 from collections import defaultdict
 import numpy as np
+import argparse
 
 import pandas as pd
 from Bio import SeqIO
@@ -175,22 +176,36 @@ def load_epitopes(iedbfasta):
 
 if __name__ == "__main__":
 
-    '''
-    
+    """
+
     Aligns neoantigens peptides of all patients to IEDB
     Requirement: blastp installed and in the PATH
-    
+
     run as:
     python align_neoantigens_to_IEDB.py
-     
-    '''
 
-    dir = os.path.join("data")
-    patient_dir = os.path.join("data", "Patient_data")
-    iedb_file = os.path.join("data", "iedb.fasta")
+    """
 
-    if not os.path.exists(os.path.join("data", "IEDB_alignments")):
-        os.mkdir(os.path.join("data", "IEDB_alignments"))
+    parser = argparse.ArgumentParser(prog="align_neoantigens_to_IEDB")
+    parser.add_argument("--fasta", help="IEDB fasta file", required=True)
+    parser.add_argument("--sample_file", help="single sample file", required=False)
+    parser.add_argument("--patient_folder", help="patient_data folder", required=False)
+
+    args = parser.parse_args()
+
+    iedb_file = args.fasta
+    single_sample_file = args.sample_file
+    patient_folder = args.patient_folder
+    if single_sample_file is None and patient_folder is None:
+        raise ValueError("Either --sample_file or --patient_folder must be specified")
+    if single_sample_file is not None and patient_folder is not None:
+        raise ValueError("Only one of --sample_file or --patient_folder can be specified")
+    if patient_folder is not None:
+        patient_dirs = glob.glob(os.path.join(patient_folder, "*", "Primary"))
+        patient_files = [glob.glob(os.path.join(pdir, "*.json"))[0] for pdir in patient_dirs]
+    if single_sample_file is not None:
+        patient_files = [single_sample_file]
+
     # blosum62
 
     blosum62 = load_blosum62_mat()
@@ -199,16 +214,14 @@ if __name__ == "__main__":
     prepare_blastdb(iedb_file)
     epitopes = load_epitopes(iedb_file)
 
-    patientdirs = glob.glob(os.path.join(patient_dir, "*", "Primary"))
-    # file to extract neoantigen sequences for that patient
-    patientfiles = [glob.glob(os.path.join(pdir, "*.json"))[0] for pdir in patientdirs]
-
-    for pfile in patientfiles:
-        with open(pfile) as f:
+    for patient_file in patient_files:
+        with open(patient_file) as f:
             pjson = json.load(f)
         patient = pjson["patient"]
         neoantigens = pjson["neoantigens"]
-        peptides = set([("_".join(neo["id"].split("_")[:-1]), neo["sequence"]) for neo in neoantigens])
+        peptides = set(
+            [("_".join(neo["id"].split("_")[:-1]), neo["sequence"]) for neo in neoantigens]
+        )
         pepseq2pepid = defaultdict(set)
         for pep_id, pep_seq in peptides:
             pepseq2pepid[pep_seq].add(pep_id)
@@ -226,6 +239,15 @@ if __name__ == "__main__":
                     aln_data.append([pep_id, pep_seq, epitope_id, score])
         if len(aln_data):
             aln_data = pd.DataFrame(aln_data)
-            aln_data.columns = ["Peptide_ID", "Peptide", "Epitope_ID", "Alignment_score"]
-            aln_data.to_csv(os.path.join("data", "IEDB_alignments", "iedb_alignments_" + patient + ".txt"), sep="\t",
-                            index=False)
+            aln_data.columns = [
+                "Peptide_ID",
+                "Peptide",
+                "Epitope_ID",
+                "Alignment_score",
+            ]
+        else:
+            aln_data = pd.DataFrame(columns=["Peptide_ID","Peptide","Epitope_ID","Alignment_score"])
+        aln_data.to_csv(
+            "iedb_alignments_" + patient + ".txt", sep="\t", index=False
+        )
+        

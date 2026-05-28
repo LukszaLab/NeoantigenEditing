@@ -4,14 +4,15 @@
     Copyright (C) 2022 Marta Luksza
 """
 
-
-import glob
+import argparse
 import json
-import os
+
 from collections import defaultdict
 
 import numpy as np
 import pandas as pd
+import os
+import glob
 
 from EpitopeDistance import EpitopeDistance
 
@@ -266,74 +267,95 @@ def clean_data(tree):
 
 if __name__ == "__main__":
 
-    '''
+    """
     Computes components contributing to neoantigen quality score, fitness of clones and annotates clones with neoantigens in *_annotated.json
     files.
-    
+
     Run as:
-    
-    python compute_fitness.py
-     
-    '''
+
+    python compute_fitness.py --alignment <alignment_file> --sample_file <sample_file> --kd_cutoff_fitness <kd_cutoff_fitness>
+
+    """
 
     a = 22.897590714815188
     k = 1
     w = 0.22402192838740312
 
-    dir = os.path.join("data")
-    patient_dir = os.path.join("data", "Patient_data")
-    iedn_aln_dir = os.path.join("data", "IEDB_alignments")
+    parser = argparse.ArgumentParser(prog="align_neoantigens_to_IEDB")
+    parser.add_argument("--alignment", help="neoantigen alignment file", required=True)
+    parser.add_argument("--sample_file", help="single sample file", required=False)
+    parser.add_argument("--patient_folder", help="patient_data folder", required=False)
+    parser.add_argument("--kd_cutoff_fitness", help="maximum Kd to include for fitness calculation", required=True, type=float)
+
+    args = parser.parse_args()
+
+    alignment_file = args.alignment
+    single_sample_file = args.sample_file
+    patient_folder = args.patient_folder
+    kd_cutoff_fitness = args.kd_cutoff_fitness
+    sample_files = []
+    if single_sample_file is None and patient_folder is None:
+        raise ValueError("Either --sample_file or --patient_folder must be specified")
+    if single_sample_file is not None and patient_folder is not None:
+        raise ValueError("Only one of --sample_file or --patient_folder can be specified")
+    if patient_folder is not None:
+        patient_dirs = glob.glob(os.path.join(patient_folder, "*", "Primary"))
+        for pat_dir in patient_dirs:
+            sample_files1 = glob.glob(os.path.join(pat_dir, "Primary", "*.json"))
+            sample_files2 = glob.glob(os.path.join(pat_dir, "Recurrent", "*.json"))
+            sample_files1 = [x for x in sample_files1 if "_annotated.json" not in x]
+            sample_files2 = [x for x in sample_files2 if "_annotated.json" not in x]
+            norm = len(sample_files2)/2
+            pat_sample_files = sample_files1 + sample_files2
+            sample_files.extend(pat_sample_files)
+    if single_sample_file is not None:
+        sample_files = [single_sample_file]
 
     epidist = EpitopeDistance()
 
-    patient_dirs = [x for x in glob.glob(os.path.join(patient_dir, "*")) if os.path.isdir(x)]
-#    samplefiles = glob.glob(os.path.join(patient_dir, "*", "*", "*.json"))
-#    samplefiles = [x for x in samplefiles if "_annotated.json" not in x]
-    for pat_dir in patient_dirs:
-        sample_files1 = glob.glob(os.path.join(pat_dir, "Primary", "*.json"))
-        sample_files2 = glob.glob(os.path.join(pat_dir, "Recurrent", "*.json"))
-        sample_files1 = [x for x in sample_files1 if "_annotated.json" not in x]
-        sample_files2 = [x for x in sample_files2 if "_annotated.json" not in x]
-        norm = len(sample_files2)/2
+    for sample_file in sample_files:
+        output_file = sample_file.replace(".json", "_annotated.json")
 
-        sample_files = sample_files1 + sample_files2
-        for sfile in sample_files:
-            with open(sfile) as f:
-                sjson = json.load(f)
-            patient = sjson["patient"]
-            neoantigens = sjson["neoantigens"]
-            nalist = [neo["sequence"] for neo in neoantigens]
+        norm = 1
 
-            alignments = pd.read_csv(os.path.join(iedn_aln_dir, "iedb_alignments_" + patient + ".txt"), sep="\t")
-            naseq2scores = defaultdict(list)
-            for r in alignments.itertuples():
-                naseq2scores[r.Peptide].append(r.Alignment_score)
+        with open(sample_file) as f:
+            sjson = json.load(f)
+        patient = sjson["patient"]
+        neoantigens = sjson["neoantigens"]
+        nalist = [neo["sequence"] for neo in neoantigens]
 
-            mut2neo = defaultdict(list)
-            for neo in neoantigens:
-                score_list = naseq2scores[neo["sequence"]]
-                neo["R"] = compute_R(score_list, a, k)
-                neo["logC"] = epidist.epitope_dist(neo["sequence"], neo["WT_sequence"])
-                neo["logA"] = np.log(neo["KdWT"] / neo["Kd"])
-                neo["quality"] = (w * neo["logC"] + (1 - w) * neo["logA"]) * neo["R"]
+        alignments = pd.read_csv(alignment_file, sep="\t")
+        naseq2scores = defaultdict(list)
+        for r in alignments.itertuples():
+            naseq2scores[r.Peptide].append(r.Alignment_score)
+
+        mut2neo = defaultdict(list)
+        for neo in neoantigens:
+            score_list = naseq2scores[neo["sequence"]]
+            neo["R"] = compute_R(score_list, a, k)
+            neo["logC"] = epidist.epitope_dist(neo["sequence"], neo["WT_sequence"])
+            neo["logA"] = np.log(neo["KdWT"] / neo["Kd"])
+            neo["quality"] = (w * neo["logC"] + (1 - w) * neo["logA"]) * neo["R"]
+            neo["is_eligible_fitness"] = False
+            if neo["Kd"] <= kd_cutoff_fitness:
+                neo["is_eligible_fitness"] = True
                 mut2neo[neo["mutation_id"]].append(neo)
 
-            mut2dg = mark_driver_gene_mutations(sjson)
-            mut2missense = mark_missense_mutations(sjson)
-            neo2qualities = map_neoantigen_qualities(sjson)
+        mut2dg = mark_driver_gene_mutations(sjson)
+        mut2missense = mark_missense_mutations(sjson)
+        neo2qualities = map_neoantigen_qualities(sjson)
 
-            for tree in sjson["sample_trees"]:
-                fill_up_clone_mutations(tree, mut2missense)
-                fill_up_clone_neoantigens(tree, mut2neo)
-                set_immune_fitness(tree, neo2qualities)
-                set_driver_gene_fitness(tree, mut2dg)
+        for tree in sjson["sample_trees"]:
+            fill_up_clone_mutations(tree, mut2missense)
+            fill_up_clone_neoantigens(tree, mut2neo)
+            set_immune_fitness(tree, neo2qualities)
+            set_driver_gene_fitness(tree, mut2dg)
 
-            neff = compute_effective_sample_size(sjson)
-            sjson["Effective_N"] = neff/norm
+        neff = compute_effective_sample_size(sjson)
+        sjson["Effective_N"] = neff / norm
 
-            for tree in sjson["sample_trees"]:
-                clean_data(tree)
+        for tree in sjson["sample_trees"]:
+            clean_data(tree)
 
-            ofile = sfile.replace(".json", "_annotated.json")
-            with open(ofile, 'w') as of:
-                json.dump(sjson, of, indent=True)
+        with open(output_file, "w") as of:
+            json.dump(sjson, of, indent=True)
