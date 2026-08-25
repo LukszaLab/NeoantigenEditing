@@ -9,6 +9,7 @@
 import numpy as np
 import json
 import os
+
 #%
 class EpitopeDistance(object):
     """Base class for epitope crossreactivity.
@@ -35,11 +36,17 @@ class EpitopeDistance(object):
 
     """
 
-    def __init__(self, model_file = os.path.join(os.path.dirname(__file__), 'data', 'epitope_distance_model_parameters.json'), amino_acids = 'ACDEFGHIKLMNPQRSTVWY'):
+    def __init__(
+        self,
+        model_file=os.path.join(
+            os.path.dirname(__file__), "data", "epitope_distance_model_parameters.json"
+        ),
+        amino_acids="ACDEFGHIKLMNPQRSTVWY",
+    ):
         """Initialize class and compute M_ab."""
 
         self.amino_acids = amino_acids
-        #self.amino_acid_dict = {aa: i for i, aa in enumerate(self.amino_acids)}
+        # self.amino_acid_dict = {aa: i for i, aa in enumerate(self.amino_acids)}
         self.amino_acid_dict = {}
         for i, aa in enumerate(self.amino_acids):
             self.amino_acid_dict[aa.upper()] = i
@@ -47,17 +54,16 @@ class EpitopeDistance(object):
 
         self.set_model(model_file)
 
-
     def set_model(self, model_file):
         """Load model and format substitution matrix M_ab."""
-        with open(model_file, 'r') as modelf:
+        with open(model_file, "r") as modelf:
             c_model = json.load(modelf)
-        self.d_i = c_model['d_i']
-        self.M_ab_dict = c_model['M_ab']
+        self.d_i = c_model["d_i"]
+        self.M_ab_dict = c_model["M_ab"]
         M_ab = np.zeros((len(self.amino_acids), len(self.amino_acids)))
         for i, aaA in enumerate(self.amino_acids):
             for j, aaB in enumerate(self.amino_acids):
-                M_ab[i, j] = self.M_ab_dict[aaA + '->' + aaB]
+                M_ab[i, j] = self.M_ab_dict[aaA + "->" + aaB]
         self.M_ab = M_ab
 
     def epitope_dist(self, epiA, epiB):
@@ -69,4 +75,12 @@ class EpitopeDistance(object):
             dist({a_i}, {b_i}) = \sum_i d_i M_ab(a_i, b_i)
         """
 
-        return sum([self.d_i[i]*self.M_ab[self.amino_acid_dict[epiA[i]], self.amino_acid_dict[epiB[i]]] for i in range(9)])
+        return sum(
+            [
+                self.d_i[i]
+                * self.M_ab[
+                    self.amino_acid_dict[epiA[i]], self.amino_acid_dict[epiB[i]]
+                ]
+                for i in range(9)
+            ]
+        )
