@@ -273,21 +273,27 @@ if __name__ == "__main__":
 
     Run as:
 
-    python compute_fitness.py --alignment <alignment_file> --sample_file <sample_file> --kd_cutoff_fitness <kd_cutoff_fitness>
+    python compute_fitness.py --alignment <alignment_file> --sample_file <sample_file> --a_param <a_param> --k_param <k_param> --w_param <w_param>
 
     """
-
-    a = 22.897590714815188
-    k = 1
-    w = 0.22402192838740312
 
     parser = argparse.ArgumentParser(prog="align_neoantigens_to_IEDB")
     parser.add_argument("--alignment", help="neoantigen alignment file", required=True)
     parser.add_argument("--sample_file", help="single sample file", required=False)
     parser.add_argument("--patient_folder", help="patient_data folder", required=False)
     parser.add_argument("--kd_cutoff_fitness", help="maximum Kd to include for fitness calculation", required=True, type=float)
+    parser.add_argument("--a_param", help="weight corresponding to a", default = 22.897590714815188)
+    parser.add_argument("--k_param", help="weight corresponding to k", default = 1)
+    parser.add_argument("--w_param", help="weight corresponding to w", default = 0.22402192838740312)
 
     args = parser.parse_args()
+
+    alignment_file = args.alignment
+    patient_file = args.input
+
+    a = float(args.a_param)
+    k = float(args.k_param)
+    w = float(args.w_param)
 
     alignment_file = args.alignment
     single_sample_file = args.sample_file
