@@ -305,7 +305,7 @@ if __name__ == "__main__":
     if single_sample_file is not None and patient_folder is not None:
         raise ValueError("Only one of --sample_file or --patient_folder can be specified")
     if patient_folder is not None:
-        patient_dirs = glob.glob(os.path.join(patient_folder, "*", "Primary"))
+        patient_dirs = [x for x in glob.glob(os.path.join(patient_folder, "*")) if os.path.isdir(x)]
         for pat_dir in patient_dirs:
             sample_files1 = glob.glob(os.path.join(pat_dir, "Primary", "*.json"))
             sample_files2 = glob.glob(os.path.join(pat_dir, "Recurrent", "*.json"))

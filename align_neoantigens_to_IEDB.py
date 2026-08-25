@@ -201,8 +201,11 @@ if __name__ == "__main__":
     if single_sample_file is not None and patient_folder is not None:
         raise ValueError("Only one of --sample_file or --patient_folder can be specified")
     if patient_folder is not None:
-        patient_dirs = glob.glob(os.path.join(patient_folder, "*", "Primary"))
-        patient_files = [glob.glob(os.path.join(pdir, "*.json"))[0] for pdir in patient_dirs]
+        patient_dirs = [x for x in glob.glob(os.path.join(patient_folder, "*")) if os.path.isdir(x)]
+        patient_files = []
+        for pdir in patient_dirs:
+            primary_files = glob.glob(os.path.join(pdir, "Primary", "*.json"))
+            patient_files.extend([x for x in primary_files if "_annotated.json" not in x])
     if single_sample_file is not None:
         patient_files = [single_sample_file]
 
