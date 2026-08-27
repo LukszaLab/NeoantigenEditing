@@ -308,7 +308,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     alignment_file = args.alignment
-    patient_file = args.input
 
     a = float(args.a_param)
     k = float(args.k_param)
